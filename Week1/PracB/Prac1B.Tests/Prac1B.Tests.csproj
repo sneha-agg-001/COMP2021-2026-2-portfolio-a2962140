@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PayrollCalculator\PayrollCalculator.csproj" />
+    <ProjectReference Include="..\..\PracA\PayrollCalculator\PayrollCalculator.csproj" />
   </ItemGroup>
 
 </Project>

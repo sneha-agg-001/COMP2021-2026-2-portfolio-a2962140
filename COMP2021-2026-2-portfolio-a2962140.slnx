@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/Week1/" />
+  <Folder Name="/Week1/PracA/">
+    <Project Path="Week1/PracA/IntroTopic/IntroTopic.csproj" />
+    <Project Path="Week1/PracA/PayrollCalculator/PayrollCalculator.csproj" />
+  </Folder>
+  <Folder Name="/Week1/PracB/">
+    <Project Path="Week1/PracB/Prac1B.Tests/Prac1B.Tests.csproj" />
+    <Project Path="Week1/PracB/TodoApp/TodoApp.csproj" />
+  </Folder>
+  <Folder Name="/Week2/" />
+  <Folder Name="/Week2/PracA/">
+    <Project Path="Week2/PracA/PayrollApp.Tests/PayrollApp.Tests.csproj" />
+    <Project Path="Week2/PracA/PayrollApp/PayrollApp.csproj" />
+  </Folder>
+</Solution>
