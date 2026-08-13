@@ -13,4 +13,9 @@
     <Project Path="Week2/PracA/PayrollApp.Tests/PayrollApp.Tests.csproj" />
     <Project Path="Week2/PracA/PayrollApp/PayrollApp.csproj" />
   </Folder>
+  <Folder Name="/Week3/" />
+  <Folder Name="/Week3/PracB/">
+    <Project Path="Week3/PracB/BankAccount.Tests/BankAccount.Tests.csproj" />
+    <Project Path="Week3/PracB/BankAccount/BankAccount.csproj" />
+  </Folder>
 </Solution>

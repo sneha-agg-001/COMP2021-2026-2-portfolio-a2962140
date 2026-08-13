@@ -1,0 +1,13 @@
+Week 3 Prac B Reflection
+
+1. What does encapsulation achieve in C#?
+
+Encapsulation means keeping the data and behaviour of a class together and controlling how the data can be accessed or changed. In my BankAccount class, the Owner and Balance properties represent the account data, while Deposit and Withdraw provide controlled ways to modify the balance. This helps prevent invalid changes and keeps the class easier to maintain.
+
+2. Why are access modifiers important?
+
+Access modifiers such as public, private and protected control which parts of a class can be accessed from other parts of the program. They help protect data and support encapsulation. For example, making a member private prevents other classes from directly changing it and allows the class to control how that data is modified.
+
+3. How would you explain method overloading to a Python programmer?
+
+Method overloading in C# allows multiple methods to have the same name as long as they have different parameter lists. In my BankAccount class, Deposit is overloaded to accept decimal, int and double values. C# chooses the appropriate version based on the type of argument supplied. Python normally handles this differently because it does not support traditional method overloading in the same way; Python programmers often use default arguments or inspect the argument type instead.
