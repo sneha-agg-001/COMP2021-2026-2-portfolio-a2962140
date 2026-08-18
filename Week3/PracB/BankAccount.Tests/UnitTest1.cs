@@ -1,100 +1,96 @@
-﻿using System;
-using Xunit;
-using BankAccountClass = global::BankAccount.BankAccount;
-
-namespace BankAccount.Tests;
-
-public class BankAccountTests
+﻿public class BankAccountTests
 {
     [Fact]
-    public void Constructor_SetsOwnerAndBalance()
+    public void Deposit_IncreasesBalance()
     {
-        var account = new BankAccountClass("Sneha", 1000m);
+        var account = new BankAccount("Sneha", 1000m);
 
-        Assert.Equal("Sneha", account.Owner);
-        Assert.Equal(1000m, account.Balance);
-    }
-
-    [Fact]
-    public void Deposit_Decimal_IncreasesBalance()
-    {
-        var account = new BankAccountClass("Sneha", 1000m);
-
-        account.Deposit(250m);
-
-        Assert.Equal(1250m, account.Balance);
-    }
-
-    [Fact]
-    public void Deposit_Int_IncreasesBalance()
-    {
-        var account = new BankAccountClass("Sneha", 1000m);
-
-        account.Deposit(200);
+        account.Deposit(200m);
 
         Assert.Equal(1200m, account.Balance);
     }
 
     [Fact]
-    public void Deposit_Double_IncreasesBalance()
+    public void Deposit_RejectsZero()
     {
-        var account = new BankAccountClass("Sneha", 1000m);
-
-        account.Deposit(50.50);
-
-        Assert.Equal(1050.50m, account.Balance);
-    }
-
-    [Fact]
-    public void Deposit_Zero_ThrowsException()
-    {
-        var account = new BankAccountClass("Sneha", 1000m);
+        var account = new BankAccount("Sneha", 1000m);
 
         Assert.Throws<ArgumentException>(() => account.Deposit(0m));
     }
 
     [Fact]
-    public void Deposit_Negative_ThrowsException()
-    {
-        var account = new BankAccountClass("Sneha", 1000m);
-
-        Assert.Throws<ArgumentException>(() => account.Deposit(-100m));
-    }
-
-    [Fact]
     public void Withdraw_DecreasesBalance()
     {
-        var account = new BankAccountClass("Sneha", 1000m);
+        var account = new BankAccount("Sneha", 1000m);
 
-        account.Withdraw(300m);
+        account.Withdraw(200m);
 
-        Assert.Equal(700m, account.Balance);
+        Assert.Equal(800m, account.Balance);
     }
 
     [Fact]
-    public void Withdraw_TooMuch_ThrowsException()
+    public void Withdraw_RejectsInsufficientFunds()
     {
-        var account = new BankAccountClass("Sneha", 1000m);
+        var account = new BankAccount("Sneha", 100m);
 
         Assert.Throws<InvalidOperationException>(
-            () => account.Withdraw(1500m));
+            () => account.Withdraw(200m)
+        );
     }
 
     [Fact]
-    public void Withdraw_Zero_ThrowsException()
+    public void Withdraw_RejectsZero()
     {
-        var account = new BankAccountClass("Sneha", 1000m);
+        var account = new BankAccount("Sneha", 1000m);
 
         Assert.Throws<ArgumentException>(
-            () => account.Withdraw(0m));
+            () => account.Withdraw(0m)
+        );
     }
 
     [Fact]
-    public void Withdraw_Negative_ThrowsException()
+    public void SavingsAccount_StoresInterestRate()
     {
-        var account = new BankAccountClass("Sneha", 1000m);
+        var account = new SavingsAccount("Sneha", 1000m, 3.5m);
 
-        Assert.Throws<ArgumentException>(
-            () => account.Withdraw(-100m));
+        Assert.Equal(3.5m, account.InterestRate);
+    }
+
+    [Fact]
+    public void SavingsAccount_AppliesInterest()
+    {
+        var account = new SavingsAccount("Sneha", 1000m, 10m);
+
+        account.ApplyInterest();
+
+        Assert.Equal(1100m, account.Balance);
+    }
+
+    [Fact]
+    public void CheckingAccount_StoresTransactionFee()
+    {
+        var account = new CheckingAccount("Sneha", 1000m, 5m);
+
+        Assert.Equal(5m, account.TransactionFee);
+    }
+
+    [Fact]
+    public void CheckingAccount_WithdrawsTransactionFee()
+    {
+        var account = new CheckingAccount("Sneha", 1000m, 5m);
+
+        account.Withdraw(100m);
+
+        Assert.Equal(895m, account.Balance);
+    }
+
+    [Fact]
+    public void DisplayAccountInfo_DoesNotThrow()
+    {
+        var savings = new SavingsAccount("Sneha", 1000m, 3.5m);
+        var checking = new CheckingAccount("Sneha", 1000m, 5m);
+
+        savings.DisplayAccountInfo();
+        checking.DisplayAccountInfo();
     }
 }

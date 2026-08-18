@@ -1,19 +1,15 @@
-﻿using System;
-
-namespace BankAccount;
-
-public class BankAccount
+﻿public class BankAccount
 {
     public string Owner { get; set; }
-    public decimal Balance { get; private set; }
+    public decimal Balance { get; protected set; }
 
-    public BankAccount(string owner, decimal balance = 0)
+    public BankAccount(string owner, decimal balance)
     {
         Owner = owner;
         Balance = balance;
     }
 
-    public void Deposit(decimal amount)
+    public virtual void Deposit(decimal amount)
     {
         if (amount <= 0)
             throw new ArgumentException("Deposit amount must be positive.");
@@ -21,17 +17,7 @@ public class BankAccount
         Balance += amount;
     }
 
-    public void Deposit(int amount)
-    {
-        Deposit((decimal)amount);
-    }
-
-    public void Deposit(double amount)
-    {
-        Deposit((decimal)amount);
-    }
-
-    public void Withdraw(decimal amount)
+    public virtual void Withdraw(decimal amount)
     {
         if (amount <= 0)
             throw new ArgumentException("Withdrawal amount must be positive.");
@@ -41,30 +27,50 @@ public class BankAccount
 
         Balance -= amount;
     }
+
+    public virtual void DisplayAccountInfo()
+    {
+        Console.WriteLine("Account: BankAccount");
+        Console.WriteLine($"Owner: {Owner}");
+        Console.WriteLine($"Balance: ${Balance:F2}");
+    }
 }
 
 public class Program
 {
     public static void Main()
     {
-        BankAccount account = new BankAccount("Sneha", 1000m);
+        Console.WriteLine("=== Savings Account ===");
 
-        Console.WriteLine("=== Bank Account Demo ===");
-        Console.WriteLine($"Owner: {account.Owner}");
-        Console.WriteLine($"Starting balance: ${account.Balance:F2}");
+        SavingsAccount savings = new SavingsAccount(
+            "Sneha",
+            1500m,
+            3.5m
+        );
 
-        account.Deposit(200m);
-        Console.WriteLine($"After decimal deposit ($200.00): ${account.Balance:F2}");
+        savings.DisplayAccountInfo();
 
-        account.Deposit(100);
-        Console.WriteLine($"After int deposit ($100): ${account.Balance:F2}");
+        savings.ApplyInterest();
 
-        account.Deposit(50.50);
-        Console.WriteLine($"After double deposit ($50.50): ${account.Balance:F2}");
+        Console.WriteLine();
+        Console.WriteLine("After applying interest:");
+        savings.DisplayAccountInfo();
 
-        account.Withdraw(150m);
-        Console.WriteLine($"After withdrawal ($150.00): ${account.Balance:F2}");
+        Console.WriteLine();
+        Console.WriteLine("=== Checking Account ===");
 
-        Console.WriteLine("Bank account demonstration completed successfully.");
+        CheckingAccount checking = new CheckingAccount(
+            "Sneha",
+            1000m,
+            5m
+        );
+
+        checking.DisplayAccountInfo();
+
+        checking.Withdraw(100m);
+
+        Console.WriteLine();
+        Console.WriteLine("After withdrawing $100:");
+        checking.DisplayAccountInfo();
     }
 }
