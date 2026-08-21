@@ -7,3 +7,11 @@ SavingsAccount is responsible for storing an interest rate and applying interest
 CheckingAccount is responsible for storing a transaction fee and deducting the fee whenever a withdrawal is made.
 
 The DisplayAccountInfo method is virtual in the base class and overridden by the derived classes so that each account type can display its own additional information.
+
+Topic 3 Prac B Reflection
+
+Polymorphism allows different derived classes to be treated as the same base class while still using their own implementation of a method. In this task, FullTimeEmployee and Contractor are both treated as Employee objects and can be stored in the same List<Employee>. When CalculatePay() is called, the correct version of the method is used depending on the actual employee type.
+
+Inheritance allows a derived class to reuse and extend functionality from a base class, while polymorphism allows the same method call to behave differently for different derived classes.
+
+This is similar to Python because Python also supports inheritance and polymorphism. In both C# and Python, derived classes can provide their own implementation of a method. The difference is that C# is strongly typed, so the types of variables, methods and properties are explicitly declared, while Python uses dynamic typing.
