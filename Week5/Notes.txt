@@ -1,0 +1,37 @@
+# Topic 5 Prac A Reflection
+
+## Task 1: Arrays
+
+C# sorts a string array using `Array.Sort()`. For strings, the elements are sorted in ascending alphabetical order by default. The comparison is based on the string values.
+
+## Task 3: Comparing Arrays and Lists
+
+### 1. Syntax differences
+
+An array has a fixed size and can be declared using `string[]`, for example:
+
+```csharp
+string[] names = ["Sneha", "Aman", "Priya"];
+```
+
+A List is a collection that can change size and is declared using `List<string>`, for example:
+
+```csharp
+List<string> students = new List<string>();
+```
+
+Arrays use their fixed size, while Lists provide methods such as `Add()`, `Remove()`, `Insert()` and `AddRange()` to change the collection.
+
+### 2. Performance and flexibility
+
+Arrays are useful when the number of elements is known and does not need to change. They have a fixed size and provide fast access to elements using an index.
+
+Lists are more flexible because they can grow and shrink as elements are added or removed. However, adding or removing elements can sometimes require the List to resize or move elements.
+
+### 3. When I would use each structure
+
+I would use an Array when I know the number of elements will stay fixed, such as storing a fixed collection of names.
+
+I would use a List when the number of elements may change during the program. For example, a student list is better suited to a List because students can be added or removed.
+
+Overall, Arrays are suitable for fixed-size collections, while Lists are more suitable when flexibility is required.
